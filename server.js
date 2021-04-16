@@ -9,8 +9,8 @@ const client_secret = "288f1b18784249deb6b25f90ef079707"
 const redirect_uri = "http://localhost:3000"
 
 // After getting the authorization code
-const AUTH_URI = "https://accounts.spotify.com/api/token"
-const lyricsFinder = require('lyrics-finder');
+const AUTH_URI = "https://accounts.spotify.com/api/token" 
+const geniusLyricsApi = require("genius-lyrics-api")
 
 app.use(cors())
 app.use(express.json())
@@ -87,11 +87,22 @@ app.post("/refresh", async (req, res) => {
 })
 
 app.get("/lyrics", async (req, res) => {
-    const lyrics = await lyricsFinder(req.query.artist, req.query.title) || "No Lyrics Found!";
-    res.json({ lyrics })
-
+    console.log("lyrics")
+    const options = {
+        apiKey: 'JKAN_ktk0H0StInXHT0GJA8LjKj0NB9ba9a5ZJEoWzUrI_GleJPTcQ3ozoWSpvTS',
+        title: req.query.title,
+        artist: req.query.artist,
+        optimizeQuery: true
+    };
+    geniusLyricsApi.getLyrics(options).then((lyrics) =>{
+        console.log(lyrics)
+        if (!lyrics) res.json({lyrics: "No lyrics found !"})
+        else{
+            res.json({lyrics})
+        }
+    })
+    .catch((err) => res.json({lyrics: "No lyrics found !"}))
 })
-
 app.listen("3001", () => {
     console.log("Listening")
 })
