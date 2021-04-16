@@ -10,6 +10,7 @@ const redirect_uri = "http://localhost:3000"
 
 // After getting the authorization code
 const AUTH_URI = "https://accounts.spotify.com/api/token"
+const lyricsFinder = require('lyrics-finder');
 
 app.use(cors())
 app.use(express.json())
@@ -83,6 +84,12 @@ app.post("/refresh", async (req, res) => {
         console.log("error", err)
         res.status(400).json("Something went wrong")
     }
+})
+
+app.get("/lyrics", async (req, res) => {
+    const lyrics = await lyricsFinder(req.query.artist, req.query.title) || "No Lyrics Found!";
+    res.json({ lyrics })
+
 })
 
 app.listen("3001", () => {
