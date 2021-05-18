@@ -6,7 +6,7 @@ const app = express();
 
 const client_id = "449154ee43934fedaf41f90755746f08"
 const client_secret = "288f1b18784249deb6b25f90ef079707"
-const redirect_uri = "http://localhost:3000"
+const redirect_uri = "https://quizzical-ride-b36a63.netlify.app/"
 
 // After getting the authorization code
 const AUTH_URI = "https://accounts.spotify.com/api/token" 
