@@ -103,6 +103,6 @@ app.get("/lyrics", async (req, res) => {
     })
     .catch((err) => res.json({lyrics: "No lyrics found !"}))
 })
-app.listen("3001", () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Listening")
 })
