@@ -86,12 +86,12 @@ app.post("/refresh", async (req, res) => {
     }
 })
 
-app.get("/lyrics", async (req, res) => {
+app.post("/lyrics", async (req, res) => {
     console.log("lyrics")
     const options = {
         apiKey: 'JKAN_ktk0H0StInXHT0GJA8LjKj0NB9ba9a5ZJEoWzUrI_GleJPTcQ3ozoWSpvTS',
-        title: req.query.title,
-        artist: req.query.artist,
+        title: req.body.title,
+        artist: req.body.artist,
         optimizeQuery: true
     };
     geniusLyricsApi.getLyrics(options).then((lyrics) =>{
