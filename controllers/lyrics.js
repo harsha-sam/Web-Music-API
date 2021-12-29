@@ -5,9 +5,9 @@ const handleLyricsGet = async (req, res) => {
     apiKey: process.env.GENIUS_API_KEY,
     title: req.query.title,
     artist: req.query.artist,
-    optimizeQuery: true
+    optimizeQuery: true,
+    authHeader: true
   };
-  console.log("req", req.query, options);
   geniusLyricsApi.getLyrics(options).then((lyrics) => {
     if (!lyrics) res.json({ lyrics: "No lyrics found !" })
     else {
