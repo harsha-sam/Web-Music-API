@@ -1,7 +1,6 @@
 const geniusLyricsApi = require("genius-lyrics-api")
 
 const handleLyricsGet = async (req, res) => {
-    console.log("lyrics")
     const options = {
         apiKey: process.env.GENIUS_API_KEY,
         title: req.query.title,
@@ -9,10 +8,9 @@ const handleLyricsGet = async (req, res) => {
         optimizeQuery: true
     };
     geniusLyricsApi.getLyrics(options).then((lyrics) => {
-        console.log(lyrics)
         if (!lyrics) res.json({ lyrics: "No lyrics found !" })
         else {
-            res.json({ lyrics })
+          res.json({ lyrics })
         }
     })
     .catch((err) => res.json({ lyrics: "No lyrics found !" }))

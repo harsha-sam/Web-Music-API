@@ -6,7 +6,6 @@ const redirect_uri = process.env.REDIRECT_URI
 const AUTH_URI = process.env.AUTH_URI
 
 const handleLogin = async (req, res) => {
-    console.log("login")
     const { authorizationCode } = req.body
     try {
         const response = await axios({
@@ -32,13 +31,11 @@ const handleLogin = async (req, res) => {
         })
     }
     catch (err) {
-        console.log("error", err)
         res.status(400).json("Something went wrong")
     }
 }
 
 const handleRefreshToken = async (req, res) => {
-    console.log("refresh request")
     const { refreshToken } = req.body
     try {
         const response = await axios({
@@ -64,7 +61,6 @@ const handleRefreshToken = async (req, res) => {
         })
     }
     catch (err) {
-        console.log("error", err)
         res.status(400).json("Something went wrong")
     }
 }
