@@ -1,6 +1,7 @@
 const geniusLyricsApi = require("genius-lyrics-api")
 
 const handleLyricsGet = async (req, res) => {
+  console.log("req", req.query)
   const options = {
     apiKey: process.env.GENIUS_API_KEY,
     title: req.query.title,
