@@ -31,6 +31,7 @@ const handleLogin = async (req, res) => {
         })
     }
     catch (err) {
+        console.error(err)
         res.status(400).json("Something went wrong")
     }
 }
